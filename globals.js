@@ -1,3 +1,4 @@
+var sceneWidth = 1000;
 var allItems = [];
 var r = (x, y = 1) => Math.floor(Math.random() * (x - y + 1)) + y;
 var i = (t,x) => `./assets/${t}${r(x)}.svg`;

@@ -1,3 +1,19 @@
+var initScale = () => {
+    if (innerWidth < sceneWidth) {
+        c.style.transform = `scale(${innerWidth/sceneWidth})`;
+        var cw = parseInt(getComputedStyle(c).width, 10);
+        var lw = parseInt(getComputedStyle(l).width, 10);
+        var d = lw - cw;
+
+        if (d > 0) {
+            l.style.transform = `translateX(-${d/2}px)`;
+        }
+    } else {
+        c.style.removeProperty('transform');
+        l.style.removeProperty('transform');
+    }
+};
+
 var initBg = () => {
     background.width = innerWidth;
     background.height = innerHeight;
@@ -17,8 +33,12 @@ var initBg = () => {
       context.fillStyle = "hsl(" + hue + ", " + sat + "%, 88%)";
       context.fill();
     }
-  };
+};
 
-  initBg();
+initScale();
+initBg();
 
-  window.onresize = initBg;
+window.onresize = () => {
+    initScale();
+    initBg();
+};
