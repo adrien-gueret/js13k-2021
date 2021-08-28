@@ -1,0 +1,298 @@
+:root {
+    background: #111;
+    --planet-size: 200px;
+    --ufo-size: 80px;
+    --item-limit: 400px;
+    --human-animation-duration: 15s;
+    --rocket-animation-duration: 10s;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: block;
+  }
+
+  .planet {
+    width: var(--planet-size);
+    height:  var(--planet-size);
+    font-size: var(--planet-size);
+    line-height: var(--planet-size);
+  }
+
+  .ad-support {
+    --orbit-from: 0deg;
+    width: 32px;
+    height: 32px;
+    animation: orbit-ad 60s linear infinite reverse;
+  }
+
+  .ad-support::after {
+    content: '';
+    width: 197px;
+    height: 92px;
+    display: block;
+    position: absolute;
+    left: -90px;
+    bottom: 40px;
+    border: 4px solid #fff;
+    background-color: currentColor;
+    background-image: url('./assets/ads.min.png');
+    animation: rainbow 120s linear infinite;
+  }
+
+  .h {
+    width: 197px;
+    height: 31px;
+    display: block;
+    position: absolute;
+    right: -79px;
+    bottom: 44px;
+    background: #000;
+    z-index: 1;
+    transition: width 500ms ease-in;
+    display: none;
+  }
+
+  .h+.h {
+    bottom: 75px;
+  }
+
+  .h+.h+.h {
+    bottom: 106px;
+  }
+
+  .ad-support.on > .h {
+    display: block;
+  }
+
+  .ad-support.on.level1 > .h:last-of-type,
+  .ad-support.on.level2 > .h:nth-of-type(2),
+  .ad-support.on.level3 > .h:first-of-type {
+    width: 0;
+  }
+
+  .ad-support::before {
+    content: '';
+    width: 4px;
+    height: 100px;
+    display: block;
+    position: absolute;
+    left: 9px;
+    bottom: 28px;
+    background-color: #fff;
+  }
+
+
+  .ad-support.on::after {
+    background-position-y: -93px;
+    animation: none;
+  } 
+
+  .ad-support+.ad-support.on::after {
+    background-position-y: -186px;
+  } 
+
+  .ad-support+.ad-support+.ad-support.on::after {
+    background-position-y: -279px;
+  } 
+
+
+  .ad-support+.ad-support {
+    --orbit-from: 120deg;
+  }
+
+  .ad-support+.ad-support+.ad-support {
+    --orbit-from: 240deg;
+  }
+
+  .ufo {
+    --orbit-from: 0deg;
+    --orbit-to: 360deg;
+    width:  var(--ufo-size);
+    height: var(--ufo-size);
+    font-size: var(--ufo-size);
+    line-height: var(--ufo-size);
+
+    animation: orbit 6s linear infinite;
+  }
+
+  .ufo-emoji {
+    transform: rotate(90deg);
+    display: block;
+  }
+
+  .ufo-translate {
+    transform: translateX(calc(var(--planet-size)/2 + var(--ufo-size)/2));
+    display:  block;
+    transition: transform 1s ease-in-out;
+  }
+
+  .limit {
+    width:  calc(var(--item-limit) * 2);
+    height: calc(var(--item-limit) * 2);
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    animation: rainbow 120s linear infinite;
+  }
+
+  #background {
+    background: #111;
+    width: 100%;
+    height: auto;
+  }
+
+  .item-scale {
+    display: block;
+    font-size: 70px;
+    text-shadow: #f3f3f3 1px 0 10px;
+    width: 60px;
+    text-align: center;
+    height: 100px;
+    transform: scale(1);
+    animation: grow var(--human-animation-duration) ease-in 1 forwards;
+  }
+
+  .item-translate {
+    transform: translateY(0);
+    animation: fly var(--human-animation-duration) ease-in 1 forwards;
+  }
+
+  .item-scale.rocket,.item-translate.rocket {
+    animation-duration: var(--rocket-animation-duration);
+  }
+
+  .rocket-image {
+    transform: rotate(-45deg);
+    filter: drop-shadow(1px 0 10px red);
+  }
+
+  .money {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .money .transform {
+    transition: all 300ms;
+  }
+
+  .money.absorbed .transform {
+    transform: scale(0) translateY(-80px);
+    opacity: 0;
+  }
+
+  #c {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .debug {
+    position: absolute;
+    background: red;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    transform: scale(70);
+    opacity: 0;
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+
+  @keyframes orbit-ad {
+    from {
+      transform: rotate(var(--orbit-from)) translateY(-400px);
+    }
+
+    to {
+      transform: rotate(calc(var(--orbit-from) + 360deg)) translateY(-400px);
+    }
+  }
+
+
+  @keyframes grow {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fly {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(var(--item-limit) * -1));
+    }
+  }
+
+  @keyframes vanish {
+    from {
+      transform: translateY(calc(var(--item-limit) * -1));
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-9999px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes rainbow {
+    0% {
+      color: white;
+    }
+    12.5% {
+      color: pink;
+    }
+    25% {
+      color: purple;
+    }
+    35.5% {
+      color: blue;
+    }
+    50% {
+      color: aqua;
+    }
+    62.5% {
+      color: green;
+    }
+    75% {
+      color: yellow;
+    }
+    87.5% {
+      color: orange;
+    }
+    100% {
+      color: red;
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
