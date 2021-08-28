@@ -188,6 +188,7 @@
   }
 
   #c {
+    user-select: none;
     position: fixed;
     left: 0;
     top: 0;

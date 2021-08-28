@@ -31,6 +31,28 @@ document.onkeyup = (e) => {
     down();
 };
 
+document.body.ontouchstart = (e) => {
+    if (isPressed) {
+        return;
+      }
+  
+      isPressed = true;
+      e.preventDefault();
+  
+      up();
+};
+
+document.body.ontouchend = (e) => {
+    if (!isPressed) {
+        return;
+      }
+  
+      isPressed = false;
+      e.preventDefault();
+  
+      down();
+};
+
   
 var generateItem = () => {
     var x = r(100);
@@ -112,4 +134,4 @@ var loop = () => {
     setTimeout(loop, 3000);
 };
 
-//loop();
+loop();
