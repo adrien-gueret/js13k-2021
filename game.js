@@ -53,6 +53,9 @@ document.body.ontouchend = (e) => {
       down();
 };
 
+onselectstart = () => false;
+oncontextmenu = () => false;
+
   
 var generateItem = () => {
     var x = r(100);

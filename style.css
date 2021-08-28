@@ -10,6 +10,10 @@
     overflow: hidden;
   }
 
+  * { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+    
+    body { -webkit-tap-highlight-color: transparent; }
+
   .center {
     position: absolute;
     top: 0;
@@ -188,7 +192,6 @@
   }
 
   #c {
-    user-select: none;
     position: fixed;
     left: 0;
     top: 0;
