@@ -5,7 +5,9 @@ var i = (t,x) => `./assets/${t}${r(x)}.svg`;
 var humanEmojiCode = '&#x1F574;';
 var humanColors = ['', '&#x1F3FB', '&#x1F3FC', '&#x1F3FD', '&#x1F3FE', '&#x1F3FF'];
 var itemSize = 70;
+var ufoSize = 60;
 var isPressed = false;
+var globalScale = 1;
 var getCenter = node => {
     var rec = node.getBoundingClientRect();
     var x = rec.x + rec.width/2;

@@ -37,8 +37,7 @@ document.body.ontouchstart = (e) => {
       }
   
       isPressed = true;
-      e.preventDefault();
-  
+     
       up();
 };
 
@@ -77,13 +76,12 @@ var collision = (c1, c2) => {
 setInterval(() => {
     var rec = ui.getBoundingClientRect();
 
+    var size = ufoSize * globalScale;  
+
     var x = rec.x + rec.width/2;
     var y = rec.y + rec.height/2;
 
-    d.style.left = x + 'px';
-    d.style.top = y + 'px';
-
-    var ufoC = { x, y, r: itemSize / 2 };
+    var ufoC = { x, y, r: size / 2 };
 
     allItems.forEach((item) => {
       var c = item.getCircle();

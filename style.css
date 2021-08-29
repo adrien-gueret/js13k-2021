@@ -1,8 +1,10 @@
-:root {
+body {
     background: #111;
     --planet-size: 200px;
-    --ufo-size: 80px;
+    --ufo-width: 80px;
+    --ufo-height: 40px;
     --item-limit: 400px;
+    --global-scale: 1;
     --human-animation-duration: 15s;
     --rocket-animation-duration: 10s;
     padding: 0;
@@ -120,10 +122,10 @@
   .ufo {
     --orbit-from: 0deg;
     --orbit-to: 360deg;
-    width:  var(--ufo-size);
-    height: var(--ufo-size);
-    font-size: var(--ufo-size);
-    line-height: var(--ufo-size);
+    width:  var(--ufo-width);
+    height: var(--ufo-height);
+    font-size: var(--ufo-height);
+    line-height: var(--ufo-height);
 
     animation: orbit 6s linear infinite;
   }
@@ -134,7 +136,7 @@
   }
 
   .ufo-translate {
-    transform: translateX(calc(var(--planet-size)/2 + var(--ufo-size)/2));
+    transform: translateX(calc(var(--planet-size)/2 + var(--ufo-width)/2));
     display:  block;
     transition: transform 1s ease-in-out;
   }
@@ -197,16 +199,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-  }
-
-  .debug {
-    position: absolute;
-    background: red;
-    width: 1px;
-    height: 1px;
-    border-radius: 50%;
-    transform: scale(70);
-    opacity: 0;
+    transform: scale(var(--global-scale));
   }
 
   @keyframes orbit {
