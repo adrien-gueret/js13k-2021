@@ -233,8 +233,8 @@ body {
   }
 
   #c {
-    display: none;
     position: fixed;
+    visibility: hidden;
     left: 0;
     top: 0;
     right: 0;
@@ -244,7 +244,7 @@ body {
   }
 
   .started #c {
-    display: block;
+    visibility: visible;
     transform: translateX(0) scale(var(--global-scale));
   }
 

@@ -89,7 +89,6 @@ var collision = (c1, c2) => {
  
 var start = () => {
     gameIsRunning = true;
-    c.style.display = 'block';
 
     window.requestAnimationFrame(() => {
         var i = setInterval(initBg, 50);
