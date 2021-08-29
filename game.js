@@ -10,7 +10,16 @@ function down() {
 }
 
 document.onkeydown = (e) => {
-    if (e.key !== ' ' || isPressed) {
+    if (e.key !== ' ') {
+        return;
+    }
+
+    if (!gameIsRunning) {
+        start();
+        return;
+    }
+
+    if (isPressed) {
       return;
     }
 
@@ -21,7 +30,7 @@ document.onkeydown = (e) => {
 };
 
 document.onkeyup = (e) => {
-    if (e.key !== ' ' || !isPressed) {
+    if (!gameIsRunning || e.key !== ' ' || !isPressed) {
       return;
     }
 
@@ -31,10 +40,15 @@ document.onkeyup = (e) => {
     down();
 };
 
-document.body.ontouchstart = (e) => {
+document.body.ontouchstart = () => {
+    if (!gameIsRunning) {
+        start();
+        return;
+    }
+
     if (isPressed) {
         return;
-      }
+    }
   
       isPressed = true;
      
@@ -42,12 +56,12 @@ document.body.ontouchstart = (e) => {
 };
 
 document.body.ontouchend = (e) => {
-    if (!isPressed) {
+    if (!gameIsRunning || !isPressed) {
         return;
-      }
+    }
   
-      isPressed = false;
-      e.preventDefault();
+    isPressed = false;
+    e.preventDefault();
   
       down();
 };
@@ -73,66 +87,77 @@ var collision = (c1, c2) => {
 }
 
  
-setInterval(() => {
-    var rec = ui.getBoundingClientRect();
+var start = () => {
+    gameIsRunning = true;
+    c.style.display = 'block';
 
-    var size = ufoSize * globalScale;  
+    window.requestAnimationFrame(() => {
+        var i = setInterval(initBg, 50);
+        c.ontransitionend = () => clearInterval(i);
+        document.body.classList.add('started');
+    });
 
-    var x = rec.x + rec.width/2;
-    var y = rec.y + rec.height/2;
-
-    var ufoC = { x, y, r: size / 2 };
-
-    allItems.forEach((item) => {
-      var c = item.getCircle();
-
-      if (!c) { return; }
-
-      if (collision(ufoC, c)) {
-        item.destroy(true);
-      }
-
-      const moneys = document.querySelectorAll('.money:not(.absorbed)');
-
-      if (moneys.length === 0) {
-          return;
-      }
-
-      const ads = document.querySelectorAll('.ad-support:not(.level3)');
-      
-        for(let ad of ads) {
-            var { x, y } = getCenter(ad);
-            var adCircle = { x, y, r: 16 };
-            
-            for(let money of moneys) {
-                var { x, y } = getCenter(money);
-                var moneyCircle = { x, y, r: 30 };
-
-                if (collision(adCircle, moneyCircle)) {
-                   money.classList.add('absorbed');
-                   money.ontransitionend = () => money.closest('.item-scale').remove();
-                   
-                   if (ad.classList.contains('on')) {
-                    if (ad.classList.contains('level2')) {
-                        ad.classList.add('level3');
-                    } else {
-                        ad.classList.add('level2');
+    setInterval(() => {
+        var rec = ui.getBoundingClientRect();
+    
+        var size = ufoSize * globalScale;  
+    
+        var x = rec.x + rec.width/2;
+        var y = rec.y + rec.height/2;
+    
+        var ufoC = { x, y, r: size / 2 };
+    
+        allItems.forEach((item) => {
+          var c = item.getCircle();
+    
+          if (!c) { return; }
+    
+          if (collision(ufoC, c)) {
+            item.destroy(true);
+          }
+    
+          const moneys = document.querySelectorAll('.money:not(.absorbed)');
+    
+          if (moneys.length === 0) {
+              return;
+          }
+    
+          const ads = document.querySelectorAll('.ad-support:not(.level3)');
+          
+            for(let ad of ads) {
+                var { x, y } = getCenter(ad);
+                var adCircle = { x, y, r: 16 };
+                
+                for(let money of moneys) {
+                    var { x, y } = getCenter(money);
+                    var moneyCircle = { x, y, r: 30 };
+    
+                    if (collision(adCircle, moneyCircle)) {
+                       money.classList.add('absorbed');
+                       money.ontransitionend = () => money.closest('.item-scale').remove();
+                       
+                       if (ad.classList.contains('on')) {
+                        if (ad.classList.contains('level2')) {
+                            ad.classList.add('level3');
+                        } else {
+                            ad.classList.add('level2');
+                        }
+                       } else {
+                           ad.classList.add('on');
+                           window.setTimeout(() => ad.classList.add('level1'));
+                       }
                     }
-                   } else {
-                       ad.classList.add('on');
-                       window.setTimeout(() => ad.classList.add('level1'));
-                   }
                 }
             }
-        }
-    }); 
+        }); 
+        
+    }, 33);
     
-}, 33);
-
-
-var loop = () => {
-    generateItem();
-    setTimeout(loop, 3000);
+    
+    var loop = () => {
+        generateItem();
+        setTimeout(loop, 3000);
+    };
+    
+    loop();
 };
-
-loop();

@@ -8,6 +8,7 @@ var itemSize = 70;
 var ufoSize = 60;
 var isPressed = false;
 var globalScale = 1;
+var gameIsRunning = false;
 var getCenter = node => {
     var rec = node.getBoundingClientRect();
     var x = rec.x + rec.width/2;
