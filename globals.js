@@ -12,9 +12,18 @@ var gameIsRunning = false;
 var score = 0;
 var scoreMultiplier = 10;
 var totaLives = 3;
+var mainLoopClock = null;
+var gameOver = false;
 var getCenter = node => {
     var rec = node.getBoundingClientRect();
     var x = rec.x + rec.width/2;
     var y = rec.y + rec.height/2;
     return { x, y };
 }
+var end = () => {
+    window.clearInterval(mainLoopClock);
+    gameIsRunning = false;
+    gameOver = true;
+    allItems.forEach(item => item.remove());
+    console.log('todo: end');
+};

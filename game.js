@@ -10,7 +10,7 @@ function down() {
 }
 
 document.onkeydown = (e) => {
-    if (e.key !== ' ') {
+    if (gameOver || e.key !== ' ') {
         return;
     }
 
@@ -30,7 +30,7 @@ document.onkeydown = (e) => {
 };
 
 document.onkeyup = (e) => {
-    if (!gameIsRunning || e.key !== ' ' || !isPressed) {
+    if (gameOver || !gameIsRunning || e.key !== ' ' || !isPressed) {
       return;
     }
 
@@ -41,12 +41,12 @@ document.onkeyup = (e) => {
 };
 
 document.body.ontouchstart = () => {
-    if (!gameIsRunning) {
-        start();
+    if (gameOver ||  isPressed) {
         return;
     }
 
-    if (isPressed) {
+    if (!gameIsRunning) {
+        start();
         return;
     }
   
@@ -56,7 +56,7 @@ document.body.ontouchstart = () => {
 };
 
 document.body.ontouchend = (e) => {
-    if (!gameIsRunning || !isPressed) {
+    if (gameOver || !gameIsRunning || !isPressed) {
         return;
     }
   
@@ -69,7 +69,6 @@ document.body.ontouchend = (e) => {
 onselectstart = () => false;
 oncontextmenu = () => false;
 
-  
 var generateItem = () => {
     var x = r(100);
     var shouldRenderRocket = x <= 33;
@@ -96,7 +95,7 @@ var start = () => {
         document.body.classList.add('started');
     });
 
-    setInterval(() => {
+    mainLoopClock = setInterval(() => {
         score += 0.1;
         
         var rec = ui.getBoundingClientRect();
@@ -140,6 +139,10 @@ var start = () => {
                        if (ad.classList.contains('on')) {
                         if (ad.classList.contains('level2')) {
                             ad.classList.add('level3');
+
+                            if (document.querySelectorAll('.ad-support.level3').length === 3) {
+                                end();
+                            }
                         } else {
                             ad.classList.add('level2');
                         }
@@ -152,13 +155,22 @@ var start = () => {
             }
         });
 
-        lives.innerHTML = '👽'.repeat(totaLives);
-        s.innerHTML = parseInt(score, 10) * scoreMultiplier;
+        if (totaLives > 0) {
+            lives.innerHTML = '👽'.repeat(totaLives);
+            s.innerHTML = parseInt(score, 10) * scoreMultiplier;
+        } else {
+            lc.remove();
+            end();
+        }
         
     }, 33);
     
 
     var loopGenerateItem = () => {
+        if (!gameIsRunning) {
+            return;
+        }
+
         generateItem();
         setTimeout(loopGenerateItem, 3000);
     };
