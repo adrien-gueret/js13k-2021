@@ -9,6 +9,9 @@ var ufoSize = 60;
 var isPressed = false;
 var globalScale = 1;
 var gameIsRunning = false;
+var score = 0;
+var scoreMultiplier = 10;
+var totaLives = 3;
 var getCenter = node => {
     var rec = node.getBoundingClientRect();
     var x = rec.x + rec.width/2;

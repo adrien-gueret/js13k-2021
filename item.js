@@ -77,7 +77,12 @@ class Item {
 
       var { nodeTranslate, angle } = this;
 
-      if(!hadCollision) {
+      if (hadCollision) { 
+        var { x, y } = this.getCircle();
+
+        new Score(x, y, 10);
+
+      } else {
         nodeTranslate.innerHTML = `
           <div class="money">
             <div class="transform">
@@ -98,8 +103,10 @@ class Item {
 
       var { nodeTranslate } = this;
 
-      if(!hadCollision) {
-        nodeTranslate.style.animationName = 'vanish';
+      if(hadCollision) {
+        totaLives--;
+      } else {
+        nodeTranslate.style.animationName = 'fly-away';
 
         nodeTranslate.onanimationend = () => {
           this.remove();

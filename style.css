@@ -5,12 +5,13 @@ body {
     --ufo-height: 40px;
     --item-limit: 400px;
     --global-scale: 1;
-    --human-animation-duration: 10s;
+    --human-animation-duration: 15s;
     --rocket-animation-duration: 10s;
     padding: 0;
     margin: 0;
     overflow: hidden;
     font-family: Consolas, monaco, monospace;
+    color: #eee;
   }
 
   * { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
@@ -196,7 +197,6 @@ body {
 
   #t {
     position: fixed;
-    color: #eee;
     left: 0;
     top: 0;
     right: 0;
@@ -247,6 +247,26 @@ body {
     visibility: visible;
     transform: translateX(0) scale(var(--global-scale));
   }
+  
+  #sc, #lc {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    font-size: 2rem;
+    word-spacing: -10px;
+  }
+
+  #lc {
+    top: auto;
+    bottom: 20px;
+  }
+
+  .score-delta {
+    font-size: 1.4rem;
+    position: fixed;
+    z-index: 999;
+    animation: vanish 1s ease-out forwards;
+  }
 
   @keyframes orbit {
     from {
@@ -288,6 +308,17 @@ body {
   }
 
   @keyframes vanish {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-40px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fly-away {
     from {
       transform: translateY(calc(var(--item-limit) * -1));
       opacity: 1;

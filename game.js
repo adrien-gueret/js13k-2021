@@ -97,6 +97,8 @@ var start = () => {
     });
 
     setInterval(() => {
+        score += 0.1;
+        
         var rec = ui.getBoundingClientRect();
     
         var size = ufoSize * globalScale;  
@@ -148,15 +150,18 @@ var start = () => {
                     }
                 }
             }
-        }); 
+        });
+
+        lives.innerHTML = '👽'.repeat(totaLives);
+        s.innerHTML = parseInt(score, 10) * scoreMultiplier;
         
     }, 33);
     
-    
-    var loop = () => {
+
+    var loopGenerateItem = () => {
         generateItem();
-        setTimeout(loop, 3000);
+        setTimeout(loopGenerateItem, 3000);
     };
     
-    loop();
+    loopGenerateItem();
 };
