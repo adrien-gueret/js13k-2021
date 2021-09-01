@@ -105,6 +105,8 @@ class Item {
 
       if(hadCollision) {
         totaLives--;
+        document.body.style.removeProperty('animation');
+        window.requestAnimationFrame(() => document.body.style.animation = 'shake 0.8s ease-in-out both');
       } else {
         nodeTranslate.style.animationName = 'fly-away';
 
