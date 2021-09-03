@@ -11,7 +11,7 @@ var globalScale = 1;
 var gameIsRunning = false;
 var score = 0;
 var scoreMultiplier = 10;
-var totaLives = 3;
+var totaLives = 1;
 var mainLoopClock = null;
 var gameOver = false;
 var getCenter = node => {
@@ -25,5 +25,6 @@ var end = () => {
     gameIsRunning = false;
     gameOver = true;
     allItems.forEach(item => item.remove());
-    console.log('todo: end');
+    document.body.classList.add('end');
+    
 };

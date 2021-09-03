@@ -95,85 +95,87 @@ var start = () => {
         document.body.classList.add('started');
     });
 
-    mainLoopClock = setInterval(() => {
-        score += 0.1;
+    window.setTimeout(() => {
+        mainLoopClock = setInterval(() => {
+            score += 0.1;
+            
+            var rec = ui.getBoundingClientRect();
         
-        var rec = ui.getBoundingClientRect();
+            var size = ufoSize * globalScale;  
+        
+            var x = rec.x + rec.width/2;
+            var y = rec.y + rec.height/2;
+        
+            var ufoC = { x, y, r: size / 2 };
+        
+            allItems.forEach((item) => {
+              var c = item.getCircle();
+        
+              if (!c) { return; }
+        
+              if (collision(ufoC, c)) {
+                item.destroy(true);
+              }
+        
+              const moneys = document.querySelectorAll('.money:not(.absorbed)');
+        
+              if (moneys.length === 0) {
+                  return;
+              }
+        
+              const ads = document.querySelectorAll('.ad-support:not(.level3)');
+              
+                for(let ad of ads) {
+                    var { x, y } = getCenter(ad);
+                    var adCircle = { x, y, r: 16 };
+                    
+                    for(let money of moneys) {
+                        var { x, y } = getCenter(money);
+                        var moneyCircle = { x, y, r: 30 };
+        
+                        if (collision(adCircle, moneyCircle)) {
+                           money.classList.add('absorbed');
+                           money.ontransitionend = () => money.closest('.item-scale').remove();
+                           
+                           if (ad.classList.contains('on')) {
+                            if (ad.classList.contains('level2')) {
+                                ad.classList.add('level3');
     
-        var size = ufoSize * globalScale;  
-    
-        var x = rec.x + rec.width/2;
-        var y = rec.y + rec.height/2;
-    
-        var ufoC = { x, y, r: size / 2 };
-    
-        allItems.forEach((item) => {
-          var c = item.getCircle();
-    
-          if (!c) { return; }
-    
-          if (collision(ufoC, c)) {
-            item.destroy(true);
-          }
-    
-          const moneys = document.querySelectorAll('.money:not(.absorbed)');
-    
-          if (moneys.length === 0) {
-              return;
-          }
-    
-          const ads = document.querySelectorAll('.ad-support:not(.level3)');
-          
-            for(let ad of ads) {
-                var { x, y } = getCenter(ad);
-                var adCircle = { x, y, r: 16 };
-                
-                for(let money of moneys) {
-                    var { x, y } = getCenter(money);
-                    var moneyCircle = { x, y, r: 30 };
-    
-                    if (collision(adCircle, moneyCircle)) {
-                       money.classList.add('absorbed');
-                       money.ontransitionend = () => money.closest('.item-scale').remove();
-                       
-                       if (ad.classList.contains('on')) {
-                        if (ad.classList.contains('level2')) {
-                            ad.classList.add('level3');
-
-                            if (document.querySelectorAll('.ad-support.level3').length === 3) {
-                                end();
+                                if (document.querySelectorAll('.ad-support.level3').length === 3) {
+                                    end();
+                                }
+                            } else {
+                                ad.classList.add('level2');
                             }
-                        } else {
-                            ad.classList.add('level2');
+                           } else {
+                               ad.classList.add('on');
+                               window.setTimeout(() => ad.classList.add('level1'));
+                           }
                         }
-                       } else {
-                           ad.classList.add('on');
-                           window.setTimeout(() => ad.classList.add('level1'));
-                       }
                     }
                 }
+            });
+    
+            if (totaLives > 0) {
+                lives.innerHTML = '👽'.repeat(totaLives);
+                s.innerHTML = parseInt(score, 10) * scoreMultiplier;
+            } else {
+                lc.remove();
+                end();
             }
-        });
-
-        if (totaLives > 0) {
-            lives.innerHTML = '👽'.repeat(totaLives);
-            s.innerHTML = parseInt(score, 10) * scoreMultiplier;
-        } else {
-            lc.remove();
-            end();
-        }
+            
+        }, 33);
         
-    }, 33);
     
-
-    var loopGenerateItem = () => {
-        if (!gameIsRunning) {
-            return;
-        }
-
-        generateItem();
-        setTimeout(loopGenerateItem, 3000);
-    };
+        var loopGenerateItem = () => {
+            if (!gameIsRunning) {
+                return;
+            }
     
-    loopGenerateItem();
+            generateItem();
+            setTimeout(loopGenerateItem, 3000);
+        };
+        
+        loopGenerateItem();
+    }, 1000);
 };
