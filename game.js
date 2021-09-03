@@ -15,7 +15,7 @@ document.onkeydown = (e) => {
     }
 
     if (gameOver) {
-        window.location.reload();
+        reloadGame();
         return;
     }
 
@@ -47,7 +47,7 @@ document.onkeyup = (e) => {
 
 document.body.ontouchstart = () => {
     if (gameOver) {
-        window.location.reload();
+        reloadGame();
         return;
     }
 
@@ -152,7 +152,11 @@ var start = () => {
                                 ad.classList.add('level3');
     
                                 if (document.querySelectorAll('.ad-support.level3').length === 3) {
-                                    end(END_REASONS.AD);
+                                    window.setTimeout(() => {
+                                        if (!gameOver) {
+                                            end(END_REASONS.AD);
+                                        }
+                                    }, 500);
                                 }
                             } else {
                                 ad.classList.add('level2');
@@ -170,7 +174,6 @@ var start = () => {
                 lives.innerHTML = '👽'.repeat(totaLives);
                 s.innerHTML = parseInt(score, 10) * scoreMultiplier;
             } else {
-                lc.remove();
                 end(END_REASONS.KILL);
             }
             

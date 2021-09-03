@@ -14,6 +14,7 @@ var scoreMultiplier = 10;
 var totaLives = 3;
 var mainLoopClock = null;
 var gameOver = false;
+var gameOverReadyToLeave = false;
 var getCenter = node => {
     var rec = node.getBoundingClientRect();
     var x = rec.x + rec.width/2;
@@ -33,4 +34,13 @@ var end = (reason) => {
     allItems.forEach(item => item.remove());
     document.body.classList.add('end');
     gor.innerHTML = reason;
+    window.setTimeout(() => {
+        gameOverReadyToLeave = true;
+    }, 2000)
+};
+
+var reloadGame = () => {
+    if (gameOverReadyToLeave) {
+        window.location.reload();
+    }
 };

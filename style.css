@@ -269,6 +269,10 @@ body {
     transform: translateX(0);
   }
 
+  .end #lc {
+    transform: translateX(-50vw);
+  }
+
   #sc {
     width: 0;
     height: 0;
