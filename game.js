@@ -91,7 +91,7 @@ var start = () => {
 
     window.requestAnimationFrame(() => {
         var i = setInterval(initBg, 50);
-        c.ontransitionend = () => clearInterval(i);
+        t.ontransitionend = () => clearInterval(i);
         document.body.classList.add('started');
     });
 
@@ -142,7 +142,7 @@ var start = () => {
                                 ad.classList.add('level3');
     
                                 if (document.querySelectorAll('.ad-support.level3').length === 3) {
-                                    end();
+                                    end(END_REASONS.AD);
                                 }
                             } else {
                                 ad.classList.add('level2');
@@ -161,7 +161,7 @@ var start = () => {
                 s.innerHTML = parseInt(score, 10) * scoreMultiplier;
             } else {
                 lc.remove();
-                end();
+                end(END_REASONS.KILL);
             }
             
         }, 33);

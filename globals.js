@@ -20,11 +20,17 @@ var getCenter = node => {
     var y = rec.y + rec.height/2;
     return { x, y };
 }
-var end = () => {
+
+var END_REASONS = {
+    AD: 'Humans have invaded space with their ads!',
+    KILL: 'Your spatialship has been destroyed!',
+};
+
+var end = (reason) => {
     window.clearInterval(mainLoopClock);
     gameIsRunning = false;
     gameOver = true;
     allItems.forEach(item => item.remove());
     document.body.classList.add('end');
-    
+    gor.innerHTML = reason;
 };

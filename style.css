@@ -215,19 +215,19 @@ body {
     transform: translateX(-100vw);
   }
 
-  #st {
+  .st {
     font-size: 2rem;
     animation: blink 1.2s infinite;
   }
 
-  #st .m { display: none; }
+  .st .m { display: none; }
 
   @media (pointer:coarse) {
-    #st .d {
+    .st .d {
       display: none;
     }
 
-    #st .m {
+    .st .m {
       display: block;
     }
   }
@@ -247,6 +247,11 @@ body {
     visibility: visible;
     transform: translateX(0) scale(var(--global-scale));
   }
+
+  .end #c {
+    visibility: visible;
+    transform: translateY(-200vh) scale(var(--global-scale));
+  }
   
   #sc, #lc {
     position: fixed;
@@ -255,7 +260,13 @@ body {
     font-size: 2rem;
     word-spacing: -10px;
     text-align: left;
-    z-index: 999;
+    z-index: 3;
+    transform: translateX(-50vw);
+    transition: transform 333ms ease-in;
+  }
+
+  .started #sc, .started #lc {
+    transform: translateX(0);
   }
 
   #sc {
@@ -274,7 +285,6 @@ body {
     top: 0;
     font-size: 2.5rem;
     text-align: center;
-    background: #111;
     justify-content: center;
     align-items: center;
   }
@@ -287,8 +297,40 @@ body {
   .score-delta {
     font-size: 1.4rem;
     position: fixed;
-    z-index: 999;
+    z-index: 2;
     animation: vanish 1s ease-out forwards;
+  }
+
+  #go, #gor, #gost {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    transition: all 333ms ease-in-out;
+    z-index: 4;
+  }
+
+  #go {
+    transform: translateY(-100vh);
+    font-size: 4rem;
+    top: 20vh;
+    text-transform: uppercase;
+  }
+
+  #gor {
+    transform: translateY(100vh);
+    font-size: 2.5rem;
+    top: 33vh;
+  }
+
+  #gost {
+    transform: translateY(100vh);
+    bottom: 20vh;
+  }
+
+  .end #go, .end #gor, .end #gost {
+    transform: translateY(0);
   }
 
   @keyframes orbit {
