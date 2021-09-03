@@ -11,7 +11,7 @@ var globalScale = 1;
 var gameIsRunning = false;
 var score = 0;
 var scoreMultiplier = 10;
-var totaLives = 1;
+var totaLives = 3;
 var mainLoopClock = null;
 var gameOver = false;
 var getCenter = node => {
