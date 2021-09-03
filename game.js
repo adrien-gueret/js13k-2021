@@ -10,7 +10,12 @@ function down() {
 }
 
 document.onkeydown = (e) => {
-    if (gameOver || e.key !== ' ') {
+    if (e.key !== ' ') {
+        return;
+    }
+
+    if (gameOver) {
+        window.location.reload();
         return;
     }
 
@@ -41,7 +46,12 @@ document.onkeyup = (e) => {
 };
 
 document.body.ontouchstart = () => {
-    if (gameOver ||  isPressed) {
+    if (gameOver) {
+        window.location.reload();
+        return;
+    }
+
+    if (isPressed) {
         return;
     }
 
