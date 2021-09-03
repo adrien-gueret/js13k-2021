@@ -24,7 +24,7 @@ var getCenter = node => {
 
 var END_REASONS = {
     AD: 'Humans have invaded space with their ads!',
-    KILL: 'Your spatialship has been destroyed!',
+    KILL: 'Your spaceship has been destroyed!',
 };
 
 var end = (reason) => {
