@@ -99,12 +99,8 @@ var collision = (c1, c2) => {
 var start = () => {
     gameIsRunning = true;
 
-    window.requestAnimationFrame(() => {
-        var i = setInterval(initBg, 50);
-        t.ontransitionend = () => clearInterval(i);
-        document.body.classList.add('started');
-    });
-
+    document.body.classList.add('started');
+    
     window.setTimeout(() => {
         mainLoopClock = setInterval(() => {
             score += 0.1;

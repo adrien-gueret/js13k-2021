@@ -1,3 +1,9 @@
+html { font-size: 16px; }
+
+@media (max-width: 800px) {
+  html { font-size: 10px; }
+}
+
 body {
     background: #111;
     --planet-size: 200px;
@@ -261,7 +267,7 @@ body {
     word-spacing: -10px;
     text-align: left;
     z-index: 3;
-    transform: translateX(-50vw);
+    transform: translateX(-100vw);
     transition: transform 333ms ease-in;
   }
 
@@ -270,7 +276,7 @@ body {
   }
 
   .end #lc {
-    transform: translateX(-50vw);
+    transform: translateX(-100vw);
   }
 
   #sc {
