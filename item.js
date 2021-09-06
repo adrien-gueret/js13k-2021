@@ -53,7 +53,7 @@ class Item {
       var { nodeTranslate, nodeScale } = this;
 
       if(hadCollision) {
-        nodeTranslate.innerHTML = '💥';
+        nodeTranslate.innerHTML = `<img src="${i('explosion',1)}" />`;
         nodeScale.style.textShadow = 'none';
         setTimeout(() => {
           this.remove();
