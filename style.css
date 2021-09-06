@@ -255,18 +255,18 @@ body {
     top: 0;
     right: 0;
     bottom: 0;
-    transform: translateX(100vw) scale(var(--global-scale));
+    transform: translateX(100vw);
     transition: transform 1s;
   }
 
   .started #c {
     visibility: visible;
-    transform: translateX(0) scale(var(--global-scale));
+    transform: translateX(0);
   }
 
   .end #c {
     visibility: visible;
-    transform: translateY(-200vh) scale(var(--global-scale));
+    transform: translateY(-200vh);
   }
   
   #sc, #lc {
