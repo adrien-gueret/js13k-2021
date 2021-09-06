@@ -1,18 +1,28 @@
 html { font-size: 16px; }
 
-@media (max-width: 800px) {
-  html { font-size: 10px; }
-}
-
 body {
     background: #111;
     --planet-size: 200px;
     --ufo-width: 80px;
     --ufo-height: 40px;
+    --ad-support-size: 32px;
+    --ad-support-border-width: 4px;
+    --ad-support-after-width: 197px;
+    --ad-support-after-height: 93px;
+    --ad-support-after-left: -90px;
+    --ad-support-after-bottom: 40px;
+    --ad-support-before-height: 100px;
+    --ad-support-before-left: 9px;
+    --ad-support-before-bottom: 28px;
+    --ad-hidden-right: -79px;
+    --ad-hidden-height: calc(var(--ad-support-after-height)/3);
+    --ad-hidden-base-bottom: calc(var(--ad-support-after-bottom) + var(--ad-support-border-width));
     --item-limit: 400px;
-    --global-scale: 1;
+    --item-width: 60px;
+    --item-height: 100px;
     --human-animation-duration: 15s;
     --rocket-animation-duration: 12s;
+    --orbit-ad-duration: 60s;
     padding: 0;
     margin: 0;
     overflow: hidden;
@@ -43,32 +53,33 @@ body {
 
   .ad-support {
     --orbit-from: 0deg;
-    width: 32px;
-    height: 32px;
-    animation: orbit-ad 60s linear infinite reverse;
+    width: var(--ad-support-size);
+    height: var(--ad-support-size);
+    animation: orbit-ad var(--orbit-ad-duration) linear infinite reverse;
   }
 
   .ad-support::after {
     content: '';
-    width: 197px;
-    height: 92px;
+    width: var(--ad-support-after-width);
+    height: var(--ad-support-after-height);
     display: block;
     position: absolute;
-    left: -90px;
-    bottom: 40px;
-    border: 4px solid #fff;
+    left: var(--ad-support-after-left);
+    bottom: var(--ad-support-after-bottom);
+    border: var(--ad-support-border-width) solid #fff;
     background-color: #fff;
+    background-size: cover;
     background-image: url('./assets/ads.min.png');
     animation: flicker linear infinite 2s;
   }
 
   .h {
-    width: 197px;
-    height: 31px;
+    width: var(--ad-support-after-width);
+    height: var(--ad-hidden-height);
     display: block;
     position: absolute;
-    right: -79px;
-    bottom: 44px;
+    right: var(--ad-hidden-right);
+    bottom: var(--ad-hidden-base-bottom);
     background: #000;
     z-index: 1;
     transition: width 500ms ease-in;
@@ -76,11 +87,11 @@ body {
   }
 
   .h+.h {
-    bottom: 75px;
+    bottom: calc(var(--ad-hidden-base-bottom) + var(--ad-hidden-height));
   }
 
   .h+.h+.h {
-    bottom: 106px;
+    bottom: calc(var(--ad-hidden-base-bottom) + var(--ad-hidden-height)*2);
   }
 
   .ad-support.on > .h {
@@ -95,27 +106,26 @@ body {
 
   .ad-support::before {
     content: '';
-    width: 4px;
-    height: 100px;
+    width: var(--ad-support-border-width);
+    height: var(--ad-support-before-height);
     display: block;
     position: absolute;
-    left: 9px;
-    bottom: 28px;
+    left: var(--ad-support-before-left);
+    bottom: var(--ad-support-before-bottom);
     background-color: #fff;
   }
 
-
   .ad-support.on::after {
-    background-position-y: -93px;
+    background-position-y: calc(var(--ad-support-after-height) * -1);
     animation: none;
   } 
 
   .ad-support+.ad-support.on::after {
-    background-position-y: -186px;
+    background-position-y: calc(var(--ad-support-after-height) * -2);
   } 
 
   .ad-support+.ad-support+.ad-support.on::after {
-    background-position-y: -279px;
+    background-position-y: calc(var(--ad-support-after-height) * -3);
   } 
 
 
@@ -167,9 +177,9 @@ body {
     display: block;
     font-size: 70px;
     text-shadow: #f3f3f3 1px 0 10px;
-    width: 60px;
+    width: var(--item-width);
+    height: var(--item-height);
     text-align: center;
-    height: 100px;
     transform: scale(1);
     animation: grow var(--human-animation-duration) ease-in 1 forwards;
   }
@@ -355,11 +365,11 @@ body {
 
   @keyframes orbit-ad {
     from {
-      transform: rotate(var(--orbit-from)) translateY(-400px);
+      transform: rotate(var(--orbit-from)) translateY(calc(var(--item-limit) * -1));
     }
 
     to {
-      transform: rotate(calc(var(--orbit-from) + 360deg)) translateY(-400px);
+      transform: rotate(calc(var(--orbit-from) + 360deg)) translateY(calc(var(--item-limit) * -1));
     }
   }
 
@@ -496,5 +506,28 @@ body {
   
     40%, 60% {
       transform: translate3d(4px, 4px, 4px);
+    }
+  }
+
+  @media (max-width: 800px) {
+    html { font-size: 10px; }
+
+    body {
+      --planet-size: 100px;
+      --ufo-width: 40px;
+      --ufo-height: 20px;
+      --item-limit: 200px;
+      --item-width: 30px;
+      --item-height: 50px;
+      --ad-support-size: 16px;
+      --ad-support-border-width: 2px;
+      --ad-support-after-width: 98.5px;
+      --ad-support-after-height: 46.5px;
+      --ad-support-after-left: -45px;
+      --ad-support-after-bottom: 20px;
+      --ad-support-before-height: 50px;
+      --ad-support-before-left: 4.5px;
+      --ad-support-before-bottom: 14px;
+      --ad-hidden-right: -39.5px;
     }
   }

@@ -3,8 +3,11 @@ class Score {
         var container = document.createElement('div');
         container.innerHTML = `+${value * scoreMultiplier}`;
         container.className = 'score-delta';
-        container.style.left = `${x - 35}px`;
-        container.style.top = `${y - 35}px`;
+
+        var targetX = x - 35;
+        var targetY = y - 35;
+        container.style.left = `${targetX}px`;
+        container.style.top = `${targetY}px`;
 
         container.onanimationend = () => container.remove();
 

@@ -2,7 +2,8 @@ pi.src = i('planet',3);
 ui.src = i('ufo',1);
 
 function up() {
-    ut.style.transform = 'translateX(350px)';
+    var target = window.matchMedia('(max-width: 800px)').matches ? 175 : 350;
+    ut.style.transform = `translateX(${target}px)`;
 }
 
 function down() {

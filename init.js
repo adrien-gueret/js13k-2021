@@ -1,5 +1,5 @@
 var initScale = () => {
-    if (innerWidth < sceneWidth) {
+    return;if (innerWidth < sceneWidth) {
         globalScale = innerWidth/sceneWidth;
         
         var cw = parseInt(getComputedStyle(c).width, 10);
