@@ -1,23 +1,3 @@
-var initScale = () => {
-    return;if (innerWidth < sceneWidth) {
-        globalScale = innerWidth/sceneWidth;
-        
-        var cw = parseInt(getComputedStyle(c).width, 10);
-        var lw = parseInt(getComputedStyle(l).width, 10);
-        var d = lw - cw;
-
-        if (d > 0) {
-            l.style.transform = `translateX(-${d/2}px)`;
-        } else {
-            l.style.removeProperty('transform');
-        }
-    } else {
-        globalScale = 1;
-        l.style.removeProperty('transform');
-    }
-    document.body.style.setProperty('--global-scale', globalScale);
-};
-
 var initBg = () => {
     background.width = innerWidth;
     background.height = innerHeight;
@@ -39,10 +19,8 @@ var initBg = () => {
     }
 };
 
-initScale();
 initBg();
 
 window.onresize = () => {
-    initScale();
     initBg();
 };

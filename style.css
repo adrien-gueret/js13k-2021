@@ -1,7 +1,7 @@
 html { font-size: 16px; }
 
 body {
-    background: #111;
+    background: #02061e;
     --planet-size: 200px;
     --ufo-width: 80px;
     --ufo-height: 40px;
@@ -168,20 +168,22 @@ body {
   }
 
   #background {
-    background: #111;
+    background: #02061e;
     width: 100%;
     height: auto;
   }
 
   .item-scale {
     display: block;
-    font-size: 70px;
-    text-shadow: #f3f3f3 1px 0 10px;
     width: var(--item-width);
     height: var(--item-height);
     text-align: center;
     transform: scale(1);
-    animation: grow var(--human-animation-duration) ease-in 1 forwards;
+    animation: grow calc(var(--human-animation-duration)/2) linear 1 forwards;
+  }
+
+  .item-scale.rocket {
+    animation: grow calc(var(--rocket-animation-duration)/2) linear 1 forwards;
   }
 
   .item-translate {
@@ -196,6 +198,10 @@ body {
   .rocket-image {
     transform: rotate(-45deg);
     filter: drop-shadow(1px 0 10px red);
+  }
+
+  .human {
+    kfilter: drop-shadow(1px 0 3px #f3f3f3);
   }
 
   .money {
