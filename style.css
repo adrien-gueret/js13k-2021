@@ -178,7 +178,7 @@ body {
     width: var(--item-width);
     height: var(--item-height);
     text-align: center;
-    transform: scale(1);
+    transform: scale(0);
     animation: grow calc(var(--human-animation-duration)/2) linear 1 forwards;
   }
 
