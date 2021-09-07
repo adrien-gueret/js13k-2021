@@ -200,10 +200,6 @@ body {
     filter: drop-shadow(1px 0 10px red);
   }
 
-  .human {
-    kfilter: drop-shadow(1px 0 3px #f3f3f3);
-  }
-
   .money {
     animation: float 5s ease-in-out infinite;
   }
@@ -357,6 +353,30 @@ body {
 
   .end #go, .end #gor, .end #gost {
     transform: translateY(0);
+  }
+
+  #dc {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 0 16px;
+    background: #000;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    border-top: 2px solid #eee;
+    border-left: 2px solid #eee;
+    transform-origin: right bottom;
+    transition: transform 300ms;
+    transform: scale(0);
+  }
+
+  #di {
+    flex-shrink: 0;
+    background: #e3e3e3;
+    margin-right: 16px;
+    border-radius: 50%;
+    padding: 4px;
   }
 
   @keyframes orbit {

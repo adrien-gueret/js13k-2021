@@ -86,6 +86,10 @@ class Item {
 
         new Score(x, y, 10);
 
+        if(++totalHumansKilled === totalHumansToKillBeforeNextLevel) {
+          new Rocket();
+          showNextDialog();
+        }
       } else {
         nodeTranslate.innerHTML = `
           <div class="money">

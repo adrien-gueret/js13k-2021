@@ -16,6 +16,8 @@ var totaLives = 3;
 var mainLoopClock = null;
 var gameOver = false;
 var gameOverReadyToLeave = false;
+var totalHumansKilled = 0;
+var totalHumansToKillBeforeNextLevel = 6;
 var getCenter = node => {
     var rec = node.getBoundingClientRect();
     var x = rec.x + rec.width/2;
