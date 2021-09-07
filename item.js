@@ -42,7 +42,7 @@ class Item {
         var [,scale] = matches;
 
         var { x, y } = getCenter(nodeTranslate);
-        var size = scale * itemSize;
+        var size = scale * getItemSize();
 
         return {x, y, r: size/2 };
     }

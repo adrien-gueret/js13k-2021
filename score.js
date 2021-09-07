@@ -4,8 +4,8 @@ class Score {
         container.innerHTML = `+${value * scoreMultiplier}`;
         container.className = 'score-delta';
 
-        var targetX = x - 35;
-        var targetY = y - 35;
+        var targetX = x - (isSmallScreen() ? 18 : 35);
+        var targetY = y - (isSmallScreen() ? 18 : 35);
         container.style.left = `${targetX}px`;
         container.style.top = `${targetY}px`;
 

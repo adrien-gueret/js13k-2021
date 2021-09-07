@@ -2,7 +2,7 @@ pi.src = i('planet',3);
 ui.src = i('ufo',1);
 
 function up() {
-    var target = window.matchMedia('(max-width: 800px)').matches ? 175 : 350;
+    var target = isSmallScreen() ? 175 : 350;
     ut.style.transform = `translateX(${target}px)`;
 }
 
@@ -108,7 +108,7 @@ var start = () => {
             
             var rec = ui.getBoundingClientRect();
         
-            var size = ufoSize * globalScale;  
+            var size = getUfoSize() * globalScale;  
         
             var x = rec.x + rec.width/2;
             var y = rec.y + rec.height/2;
@@ -134,11 +134,11 @@ var start = () => {
               
                 for(let ad of ads) {
                     var { x, y } = getCenter(ad);
-                    var adCircle = { x, y, r: 16 };
+                    var adCircle = { x, y, r: isSmallScreen() ? 8 : 16 };
                     
                     for(let money of moneys) {
                         var { x, y } = getCenter(money);
-                        var moneyCircle = { x, y, r: 30 };
+                        var moneyCircle = { x, y, r: isSmallScreen() ? 15 : 30 };
         
                         if (collision(adCircle, moneyCircle)) {
                            money.classList.add('absorbed');
