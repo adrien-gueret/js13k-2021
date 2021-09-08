@@ -1,11 +1,11 @@
 var dialogs = [
     {
         who: '🤑',
-        text: 'We can now display ads in space!<br>What a good opportunity to be richer!',
+        text: 'Displaying ads in space? What a good opportunity to be richer!',
     },
     {
         who: '👽',
-        text: 'We can\'t let humans pollute space with their ads...<br />We have to kill them all!',
+        text: 'We can\'t let humans pollute space with their ads... Help us to kill them all!',
     },
     {
         who: '😠',

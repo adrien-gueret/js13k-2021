@@ -357,18 +357,22 @@ body {
 
   #dc {
     position: fixed;
+    left: 0;
     right: 0;
-    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 30vh;
     padding: 0 16px;
-    background: #000;
+    max-width: 40vw;
+    background: rgba(0,0,0,.8);
     font-size: 1.2rem;
     display: flex;
     align-items: center;
-    border-top: 2px solid #eee;
-    border-left: 2px solid #eee;
-    transform-origin: right bottom;
+    border: 2px solid #eee;
+    transform-origin: center;
     transition: transform 300ms;
     transform: scale(0);
+    z-index: 9;
   }
 
   #di {
