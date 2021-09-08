@@ -1,12 +1,13 @@
 var sceneWidth = 1000;
 var smallScreenWidth = 800;
 var isSmallScreen = () => !!window.matchMedia(`(max-width: ${smallScreenWidth}px)`).matches;
+var ifSmallScreen = (x,y) => isSmallScreen() ? x : y;
 var allItems = [];
 var r = (x, y = 1) => Math.floor(Math.random() * (x - y + 1)) + y;
 var i = (t,x) => `./assets/${t}${r(x)}.svg`;
 var humanColors = ['#ffc83d','#bb9167','#613d30','#8e562e','#d8b094','#f7d7c4'];
-var getItemSize = () => isSmallScreen() ? 35 : 70;
-var getUfoSize = () => isSmallScreen() ? 30 : 60;
+var getItemSize = () => ifSmallScreen(35, 70);
+var getUfoSize = () => ifSmallScreen(30, 60);
 var isPressed = false;
 var globalScale = 1;
 var gameIsRunning = false;

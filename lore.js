@@ -28,7 +28,7 @@ var showNextDialog = (callback) => {
     window.setTimeout(() => {
         hideDialog();
         callback && callback();
-    }, 5000);
+    }, 5500);
 };
 
 var hideDialog = () => {
