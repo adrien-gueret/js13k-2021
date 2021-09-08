@@ -1,6 +1,6 @@
 var sceneWidth = 1000;
-var smallScreenWidth = 800;
-var isSmallScreen = () => !!window.matchMedia(`(max-width: ${smallScreenWidth}px)`).matches;
+var smallScreenSize = 800;
+var isSmallScreen = () => !!window.matchMedia(`(max-width: ${smallScreenSize}px),(max-height: ${smallScreenSize}px)`).matches;
 var ifSmallScreen = (x,y) => isSmallScreen() ? x : y;
 var allItems = [];
 var r = (x, y = 1) => Math.floor(Math.random() * (x - y + 1)) + y;

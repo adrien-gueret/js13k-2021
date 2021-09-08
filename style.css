@@ -539,7 +539,7 @@ body {
     }
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 800px),(max-height: 800px) {
     html { font-size: 10px; }
 
     body {
