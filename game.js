@@ -1,13 +1,10 @@
-pi.src = i('planet');
-ui.src = i('ufo');
-
 function up() {
     var target = ifSmallScreen(175,350);
-    ut.style.transform = `translateX(${target}px)`;
+    document.getElementById('ufo').style.transform = `translateX(${target}px)`;
 }
 
 function down() {
-    ut.style.removeProperty('transform');
+    document.getElementById('ufo').style.removeProperty('transform');
 }
 
 document.onkeydown = (e) => {
@@ -86,8 +83,6 @@ var generateItem = () => {
     var rocketMultiplier = Math.floor(totalHumansKilled/totalHumansToKillBeforeNextLevel);
     var rocketLuck = 25 * rocketMultiplier;
 
-    //console.log({ rocketLuck, totalRockets: Math.floor(rocketLuck / 100), bonusRocket: rocketLuck%100 });
-
     for (let i = 0, l = Math.floor(rocketLuck / 100); i < l; i++) {
         new Rocket();
     }
@@ -108,7 +103,7 @@ var collision = (c1, c2) => {
 var mainLoop = () => {
     score += 0.1;
     
-    var rec = ui.getBoundingClientRect();
+    var rec = document.getElementById('ufo-image').getBoundingClientRect();
 
     var size = getUfoSize() * globalScale;  
 
@@ -170,8 +165,8 @@ var mainLoop = () => {
     });
 
     if (totaLives > 0) {
-        lives.innerHTML = '👽'.repeat(totaLives);
-        s.innerHTML = parseInt(score, 10) * scoreMultiplier;
+        document.getElementById('lives').innerHTML = '👽'.repeat(totaLives);
+        document.getElementById('score').innerHTML = parseInt(score, 10) * scoreMultiplier;
     } else {
         end(END_REASONS.KILL);
     }  

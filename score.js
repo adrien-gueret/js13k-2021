@@ -12,7 +12,7 @@ class Score {
 
         container.onanimationend = () => container.remove();
 
-        c.appendChild(container);
+        document.getElementById('container').appendChild(container);
 
         score += 10;
     }

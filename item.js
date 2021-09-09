@@ -17,7 +17,7 @@ class Item {
       this.nodeRotate.appendChild(this.nodeTranslate);
       this.nodeScale.appendChild(this.nodeRotate);
       
-      c.appendChild(this.nodeScale);
+      document.getElementById('container').appendChild(this.nodeScale);
 
       this.nodeTranslate.onanimationend = () => {
         this.destroy(false);

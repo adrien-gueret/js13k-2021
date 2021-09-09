@@ -18,10 +18,10 @@ var currentDialogIndex = 0;
 var showNextDialog = (callback) => {
     var { who, text } = dialogs[currentDialogIndex];
 
-    di.innerHTML = who;
-    dt.innerHTML = text;
+    document.getElementById('dialog-character').innerHTML = who;
+    document.getElementById('dialog-text').innerHTML = text;
 
-    dc.style.transform = 'scale(1)';
+    document.getElementById('dialogs-container').style.transform = 'scale(1)';
 
     currentDialogIndex++;
 
@@ -32,5 +32,5 @@ var showNextDialog = (callback) => {
 };
 
 var hideDialog = () => {
-    dc.style.removeProperty('transform');
+    document.getElementById('dialogs-container').style.removeProperty('transform');
 };

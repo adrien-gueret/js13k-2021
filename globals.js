@@ -37,7 +37,7 @@ var end = (reason) => {
     gameOver = true;
     allItems.forEach(item => item.remove());
     document.body.classList.add('end');
-    gor.innerHTML = reason;
+    document.getElementById('gameover-reason').innerHTML = reason;
     window.setTimeout(() => {
         gameOverReadyToLeave = true;
     }, 2000)
