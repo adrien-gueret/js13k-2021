@@ -53,7 +53,7 @@ class Item {
       var { nodeTranslate, nodeScale } = this;
 
       if(hadCollision) {
-        nodeTranslate.innerHTML = `<img src="${i('explosion',1)}" />`;
+        nodeTranslate.innerHTML = `<img src="${i('explosion')}" />`;
         nodeScale.style.textShadow = 'none';
         setTimeout(() => {
           this.remove();
@@ -94,7 +94,7 @@ class Item {
         nodeTranslate.innerHTML = `
           <div class="money">
             <div class="transform">
-                <img style="transform: rotate(-${angle + 45}deg);" src="${i('money',1)}" />
+                <img style="transform: rotate(-${angle + 45}deg);" src="${i('money')}" />
             </div>
           </div>`;
       }
@@ -103,7 +103,7 @@ class Item {
 
   class Rocket extends Item {
     constructor() {
-      super('rocket', `<img class="rocket-image" src="${i('rocket',1)}" />`);
+      super('rocket', `<img class="rocket-image" src="${i('rocket')}" />`);
     }
 
     destroy(hadCollision) {

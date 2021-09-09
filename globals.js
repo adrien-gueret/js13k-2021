@@ -4,7 +4,7 @@ var isSmallScreen = () => !!window.matchMedia(`(max-width: ${smallScreenSize}px)
 var ifSmallScreen = (x,y) => isSmallScreen() ? x : y;
 var allItems = [];
 var r = (x, y = 1) => Math.floor(Math.random() * (x - y + 1)) + y;
-var i = (t,x) => `./assets/${t}${r(x)}.svg`;
+var i = (t) => `./assets/${t}.svg`;
 var humanColors = ['#ffc83d','#bb9167','#613d30','#8e562e','#d8b094','#f7d7c4'];
 var getItemSize = () => ifSmallScreen(35, 70);
 var getUfoSize = () => ifSmallScreen(30, 60);

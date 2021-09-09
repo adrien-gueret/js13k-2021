@@ -1,5 +1,5 @@
-pi.src = i('planet',3);
-ui.src = i('ufo',1);
+pi.src = i('planet');
+ui.src = i('ufo');
 
 function up() {
     var target = ifSmallScreen(175,350);
