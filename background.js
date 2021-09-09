@@ -3,12 +3,12 @@ const initBg = () => {
   background.width = innerWidth;
   background.height = innerHeight;
 
-  var context = background.getContext('2d'),
+  const context = background.getContext('2d'),
   stars = 600,
   colorrange = [0,60,240];
 
-  for (var i = 0; i < stars; i++) {
-    var x = Math.random() * background.offsetWidth;
+  for (let i = 0; i < stars; i++) {
+    const x = Math.random() * background.offsetWidth;
     y = Math.random() * background.offsetHeight,
     radius = Math.random() * 1.2,
     hue = colorrange[r(colorrange.length) - 1],
@@ -22,6 +22,4 @@ const initBg = () => {
 
 initBg();
 
-window.onresize = () => {
-  initBg();
-};
+window.onresize = initBg

@@ -1,55 +1,59 @@
-<meta charset="UTF-8">
-<meta name=viewport content=width=device-width,initial-scale=1>
-<meta name=apple-mobile-web-app-capable content=yes>
-<meta name=mobile-web-app-capable content=yes>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👽</text></svg>">
-<title>Earth Invader</title>
-<link rel=stylesheet href=style.css>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👽</text></svg>" />
+    <title>Earth Invader</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="background"></canvas>
 
+    <div id="title-screen">
+      <h1>Earth Invader</h1>
+      <h2 class="subtitle">
+        <span class="start-desktop">Press space</span>
+        <span class="start-mobile">Touch screen</span>
+      </h2>
+    </div>
 
-<canvas id="background"></canvas>
+    <h2 id="gameover">Game Over</h2>
+    <h3 id="gameover-reason"></h3>
+    <h2 id="gameover-subtitle" class="subtitle">
+      <span class="start-desktop">Press space</span>
+      <span class="start-mobile">Touch screen</span>
+    </h2>
 
-<div id="title-screen">
-  <h1>Earth Invader</h1>
-  <h2 class="subtitle">
-    <span class="start-desktop">Press space</span>
-    <span class="start-mobile">Touch screen</span>
-  </h2>
-</div>
+    <main id="container" unselectable="on">
+      <div class="limit center">
+        <div class="center ad-support"><span class="hidding-ad"></span><span class="hidding-ad"></span><span class="hidding-ad"></span>🌑</div>
+        <div class="center ad-support"><span class="hidding-ad"></span><span class="hidding-ad"></span><span class="hidding-ad"></span>🌑</div>
+        <div class="center ad-support"><span class="hidding-ad"></span><span class="hidding-ad"></span><span class="hidding-ad"></span>🌑</div>
+      </div>
+      
+      <div class="planet center"><img src="./assets/planet.svg" alt="" /></div>
+      
+      <div class="ufo center">
+        <span id="ufo" class="ufo-translate">
+          <span class=ufo-emoji><img id="ufo-image" src="./assets/ufo.svg" alt="" /></span>
+        </span>
+      </div>
+    </main>
 
-<h2 id="gameover">Game Over</h2>
-<h3 id="gameover-reason"></h3>
-<h2 id="gameover-subtitle" class="subtitle">
-  <span class="start-desktop">Press space</span>
-  <span class="start-mobile">Touch screen</span>
-</h2>
+    <div id="score-container"><div>Score: <span id="score">0</span></div></div>
+    <div id="lives-container">Lives: <span id="lives">👽👽👽</span></div>
+    <div id="dialogs-container">
+      <div id="dialog-character"></div>
+      <p id="dialog-text"></p>
+    </div>
 
-<main id="container" unselectable="on">
-  <div class="limit center">
-    <div class="center ad-support"><span class="hidding-ad"></span><span class="hidding-ad"></span><span class="hidding-ad"></span>🌑</div>
-    <div class="center ad-support"><span class="hidding-ad"></span><span class="hidding-ad"></span><span class="hidding-ad"></span>🌑</div>
-    <div class="center ad-support"><span class="hidding-ad"></span><span class="hidding-ad"></span><span class="hidding-ad"></span>🌑</div>
-  </div>
-  
-  <div class="planet center"><img src="./assets/planet.svg" alt="" /></div>
-  
-  <div class="ufo center">
-    <span id="ufo" class="ufo-translate">
-      <span class=ufo-emoji><img id="ufo-image" src="./assets/ufo.svg" alt="" /></span>
-    </span>
-  </div>
-</main>
-
-<div id="score-container"><div>Score: <span id="score">0</span></div></div>
-<div id="lives-container">Lives: <span id="lives">👽👽👽</span></div>
-<div id="dialogs-container">
-  <div id="dialog-character"></div>
-  <p id="dialog-text"></p>
-</div>
-
-<script src="globals.js"></script>
-<script src="lore.js"></script>
-<script src="init.js"></script>
-<script src="score.js"></script>
-<script src="item.js"></script>
-<script src="game.js"></script>
+    <script src="globals.js"></script>
+    <script src="classes.js"></script>
+    <script src="utils.js"></script>
+    <script src="background.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
